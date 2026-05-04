@@ -1,8 +1,10 @@
+import Container from "@mui/material/Container";
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import { createRootRoute, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 
 import "../styles.css";
+import CustomAppBar from "#/components/appbar";
 import { MuiThemeProvider } from "#/components/theme-provider";
 
 export const Route = createRootRoute({
@@ -12,8 +14,10 @@ export const Route = createRootRoute({
 function RootComponent() {
 	return (
 		<MuiThemeProvider>
-			<Outlet />
-
+			<CustomAppBar />
+			<Container>
+				<Outlet />
+			</Container>
 			<TanStackDevtools
 				config={{
 					position: "bottom-right",

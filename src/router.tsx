@@ -7,6 +7,10 @@ export function getRouter() {
 		scrollRestoration: true,
 		defaultPreload: "intent",
 		defaultPreloadStaleTime: 0,
+		context: {
+			// biome-ignore lint/style/noNonNullAssertion: This will be set in the root route component
+			auth: undefined!,
+		},
 	});
 
 	return router;

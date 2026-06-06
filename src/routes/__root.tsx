@@ -1,23 +1,33 @@
-import Container from "@mui/material/Container";
 import { TanStackDevtools } from "@tanstack/react-devtools";
-import { createRootRoute, Outlet } from "@tanstack/react-router";
+import { createRootRouteWithContext, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 
 import "../styles.css";
-import CustomAppBar from "#/components/appbar";
 import { MuiThemeProvider } from "#/components/theme-provider";
 
-export const Route = createRootRoute({
+interface AuthState {
+	isAuthenticated: boolean;
+	user: { email: string } | null;
+	login: (
+		username: string,
+		password: string,
+		onSuccess: () => void,
+	) => Promise<void>;
+	logout: () => void;
+}
+
+interface RouteContext {
+	auth: AuthState;
+}
+
+export const Route = createRootRouteWithContext<RouteContext>()({
 	component: RootComponent,
 });
 
 function RootComponent() {
 	return (
 		<MuiThemeProvider>
-			<CustomAppBar />
-			<Container>
-				<Outlet />
-			</Container>
+			<Outlet />
 			<TanStackDevtools
 				config={{
 					position: "bottom-right",

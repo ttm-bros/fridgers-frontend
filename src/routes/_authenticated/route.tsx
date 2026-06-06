@@ -1,3 +1,5 @@
+import CustomAppBar from "#/components/appbar";
+import Container from "@mui/material/Container";
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/_authenticated")({
@@ -12,5 +14,12 @@ export const Route = createFileRoute("/_authenticated")({
 			});
 		}
 	},
-	component: () => <Outlet />,
+	component: () => (
+		<>
+			<CustomAppBar />
+			<Container>
+				<Outlet />
+			</Container>
+		</>
+	),
 });

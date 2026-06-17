@@ -10,7 +10,13 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import React from "react";
 
-const CustomAppBar: React.FC = () => {
+type CustomAppBarProps = {
+	onLogout: () => void;
+};
+
+const CustomAppBar: React.FC<CustomAppBarProps> = ({
+	onLogout,
+}: CustomAppBarProps) => {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
 	const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -19,6 +25,11 @@ const CustomAppBar: React.FC = () => {
 
 	const handleClose = () => {
 		setAnchorEl(null);
+	};
+
+	const handleLogout = () => {
+		onLogout();
+		handleClose();
 	};
 
 	return (
@@ -50,7 +61,7 @@ const CustomAppBar: React.FC = () => {
 						<Typography>hoge@example.com</Typography>
 					</Stack>
 					<Divider />
-					<MenuItem onClick={handleClose}>Logout</MenuItem>
+					<MenuItem onClick={handleLogout}>Logout</MenuItem>
 				</Menu>
 			</Toolbar>
 		</AppBar>

@@ -14,12 +14,24 @@ export const Route = createFileRoute("/_authenticated")({
 			});
 		}
 	},
-	component: () => (
+	component: RouteComponent,
+});
+
+function RouteComponent() {
+	const { auth } = Route.useRouteContext();
+	const navigate = Route.useNavigate();
+
+	const handleLogout = () => {
+		auth.logout();
+		navigate({ to: "/login", search: { redirect: undefined } });
+	};
+
+	return (
 		<>
-			<CustomAppBar />
+			<CustomAppBar onLogout={handleLogout} />
 			<Container>
 				<Outlet />
 			</Container>
 		</>
-	),
-});
+	);
+}

@@ -49,7 +49,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 		);
 	}
 
-	const login = async (email: string, password: string, onSuccess: () => void) => {
+	const login = async (
+		email: string,
+		password: string,
+		onSuccess: () => void,
+	) => {
 		// TODO: 認証API処理を実装
 		if (email === "user@example.com" && password === "password") {
 			setAuth({
